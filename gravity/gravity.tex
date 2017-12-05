@@ -4,6 +4,7 @@
 \usepackage{eulervm}
 \usepackage{longtable}
 \usepackage{hyperref}
+\usepackage{colortbl}
 \hypersetup{
     colorlinks = true,
     allcolors = blue
@@ -132,8 +133,8 @@ How will we proceed?
 \begin{longtable}{| c | p{.45\textwidth} | p{.45\textwidth} |}
   \hline
   Step & Formula & Explanation \\
-  \hline \hline
-  1 & \[ \overbrace{6.67408 \times 10^{-11}}^G \times
+  \hline \endhead
+  \rowcolor[gray]{0.95} 1 & \[ \overbrace{6.67408 \times 10^{-11}}^G \times
     \frac{\overbrace{5.972 \times 10^{24}}^{M_1}\times
       \overbrace{1}^{M_2}}{\underbrace{(6.371 \times
         10^6)^2}_{D^2}} \] & Start by writing out the
@@ -145,7 +146,7 @@ How will we proceed?
       \times 10^6)^2}_{D^2}} \] & Any time we multiply by 1, just remove it.
   Multiplying by 1 never changes anything. \\
   \hline
-  3 & \[
+  \rowcolor[gray]{0.95} 3 & \[
     G \times \frac{M_1}{D^2} = \frac{GM_1}{D^2} \]
   & Any fraction
   $\frac{B}{C}$ can be thought of as $B \div C$.  So, 
@@ -158,7 +159,7 @@ How will we proceed?
      10^6)^2}_{D^2}}\] & Rewrite $\frac{GM_1}{D^2}$ using our actual
  numbers \\
  \hline
-  5 & \[ \frac{6.67408 \times 5.972 \times 10^{-11} \times
+  \rowcolor[gray]{0.95} 5 & \[ \frac{6.67408 \times 5.972 \times 10^{-11} \times
     10^{24}}{(6.371 \times 10^6)^2} \] & $ A \times B \times C \times D$
   can be rearranged into $A \times C \times B \times D$ thanks to the
   Commutative Property of Multiplication.  So long as we don't remove
@@ -173,7 +174,7 @@ How will we proceed?
   $-11 + 24 = 24 - 11 = 13$, so $10^{-11} \times 10^{24} = 10^{13}$.
   Now, isn't that a lot nicer? \\
   \hline
-  7 & \[ 6.67408 \times 5.972 \approx 39.86 \] & We don't need all the
+  \rowcolor[gray]{0.95} 7 & \[ 6.67408 \times 5.972 \approx 39.86 \] & We don't need all the
   digits here: $39.86$ is plenty accurate for us.  (Scientists have a
   special procedure for determining how many digits to use, called
   ``determination of significant digits''.  We won't get into it here:
@@ -185,7 +186,7 @@ How will we proceed?
     10^6)^2} \] & Another two unpleasant numbers are gone, replaced
   with a single much nicer number \\
   \hline
-  9 & \[ 39.86 = 3.986 \times 10^1 \] & When using scientific notation,
+  \rowcolor[gray]{0.95} \rowcolor[gray]{0.95} 9 & \[ 39.86 = 3.986 \times 10^1 \] & When using scientific notation,
   any number larger than ten should be broken up into a number smaller
   than ten multiplied by a certain power-of-ten.  Any number smaller
   than one should be changed in a similar way. \\
@@ -193,7 +194,7 @@ How will we proceed?
   10 & \[ \frac{3.986 \times 10^1 \times 10^{13}}{(6.371 \times
     10^6)^2} \] & Re-write step 8 with the outcome of step 9 \\
   \hline
-  11 & \[ \frac{3.986 \times 10^{14}}{(6.371 \times 10^6)^2} \] &
+  \rowcolor[gray]{0.95} 11 & \[ \frac{3.986 \times 10^{14}}{(6.371 \times 10^6)^2} \] &
   The numerator is now complete, and less scary. \\
   \hline
   12 & \[ \frac{3.986 \times 10^{14}}{6.371^2 \times {10^6}^2} \] &
@@ -201,21 +202,21 @@ How will we proceed?
   Thanks to the Commutative Property of Multiplication, this is the
   same as $a \times a \times b \times b$, or $a^2 \times b^2$. \\
   \hline
-  13 & \[ 6.371 \times 6.371 \approx 40.59 \approx 4.059 \times
+  \rowcolor[gray]{0.95} 13 & \[ 6.371 \times 6.371 \approx 40.59 \approx 4.059 \times
   10^1 \] & Multiply out the first squared term and convert it into a
   proper scientific-notation number \\
   \hline
   14 & \[ \frac{3.986 \times 10^{14}}{4.059 \times 10^1 \times
     {10^6}^2} \] & Re-write step 12 with the outcome of step 13 \\
   \hline
-  15 & \[{10^6}^2 = 10^{12}\] & When raising a power to a power,
+  \rowcolor[gray]{0.95} 15 & \[{10^6}^2 = 10^{12}\] & When raising a power to a power,
   multiply together the two powers.  E.g., $100^{3} = 1000000$,
   or ${10^2}^3 = 10^6$. \\
   \hline
   16 & \[\frac{3.986 \times 10^{14}}{4.059 \times 10^1 \times
     10^{12}}\] & Re-write step 14 with the outcome of step 15 \\
   \hline
-  17 & \[ 10^1 \times 10^{12} = 10^{13}\] &
+  \rowcolor[gray]{0.95} 17 & \[ 10^1 \times 10^{12} = 10^{13}\] &
   Following our rule from before (``to multiply together two
   exponential numbers in the same base, add their exponents''), we
   simplify the denominator. \\
@@ -223,19 +224,19 @@ How will we proceed?
   18 & \[\frac{3.986 \times 10^{14}}{4.059 \times 10^{13}} \] &
   Re-write step 16 with the outcome of step 17 \\
   \hline
-  19 & \[\frac{3.986 \times 10^1}{4.059}\] & Both numerator and
+  \rowcolor[gray]{0.95} 19 & \[\frac{3.986 \times 10^1}{4.059}\] & Both numerator and
   denominator share a factor of $10^{13}$.  It cancels out, leaving
   $10^1$ on top and nothing below. \\
   \hline
   20 & \[\frac{3.986 \times 10}{4.059}\] & $10^1 = 10$, so simplify
   step 19 with that \\
   \hline
-  21 & \[10 \times \frac{3.986}{4.059}\] & Sort of like step 3, but in
+  \rowcolor[gray]{0.95} 21 & \[10 \times \frac{3.986}{4.059}\] & Sort of like step 3, but in
   reverse \\
   \hline
   22 & \[3.986 \div 4.059 \approx 0.982\] & Plain-old long division \\
   \hline
-  23 & \[10 \times 0.982 = 9.82 \] & Re-write step 21 with step 22 \\
+  \rowcolor[gray]{0.95} 23 & \[10 \times 0.982 = 9.82 \] & Re-write step 21 with step 22 \\
   \hline
   24 & \[9.82\] & {\Huge{\textbf{Success!}}} (Huge boldface caps?  Oh, yes,
   you deserve it!) \\
@@ -306,8 +307,8 @@ the moon:
 \begin{longtable}{| c | p{0.45\textwidth} | p{0.45\textwidth} |}
   \hline
   Step & Formula & Explanation \\
-  \hline \hline
-  1 & \[ G\frac{M_e M_o}{x^2} = G\frac{M_m M_o}{(D - x)^2} \] & The
+  \hline \endhead
+  \rowcolor[gray]{0.95} 1 & \[ G\frac{M_e M_o}{x^2} = G\frac{M_m M_o}{(D - x)^2} \] & The
     force of Earth's gravity on the object $x$ meters away from the
     Earth's center equals the force of the moon's gravity on the
     object $D - x$ meters away from the moon's center\\
@@ -316,37 +317,37 @@ the moon:
   Associative Property of Multiplication to move our $M_o$ term out
   front with the $G$ term \\
   \hline
-  3 & \[ \frac{M_e}{x^2} = \frac{M_m}{(D - x)^2} \] & Divide both
+  \rowcolor[gray]{0.95} 3 & \[ \frac{M_e}{x^2} = \frac{M_m}{(D - x)^2} \] & Divide both
   sides of the equation by $GM_o$ \\
   \hline
   4 & \[ \frac{\sqrt{M_e}}{x} = \frac{\sqrt{M_m}}{D - x} \] & Run a
   square root over both sides \\
   \hline
-  5 & \[ \frac{(D-x)\sqrt{M_e}}{x} = \sqrt{M_m} \] & Multiply
+  \rowcolor[gray]{0.95} 5 & \[ \frac{(D-x)\sqrt{M_e}}{x} = \sqrt{M_m} \] & Multiply
   everything through by $D - x$ \\
   \hline
   6 & \[ \frac{D-x}{x} = \frac{\sqrt{M_m}}{\sqrt{M_e}} \] & Divide
   everything through by $\sqrt{M_e}$ \\
   \hline
-  7 & \[ \frac{D - x}{x} = \sqrt{\frac{M_m}{M_e}} \] & Normalize the
+  \rowcolor[gray]{0.95} 7 & \[ \frac{D - x}{x} = \sqrt{\frac{M_m}{M_e}} \] & Normalize the
   fraction on the right \\
   \hline
   8 & \[ \frac{D}{x} - \frac{x}{x} = \sqrt{\frac{M_m}{M_e}} \] &
   Separate the left-hand side into two fractions \\
   \hline
-  9 & \[ \frac{D}{x} - 1 = \sqrt{\frac{M_m}{M_e}} \] & $\frac{x}{x} =
-  1$ \\
+  \rowcolor[gray]{0.95} 9 & \[ \frac{D}{x} - 1 =
+  \sqrt{\frac{M_m}{M_e}} \] & $\frac{x}{x} = 1$ \\
   \hline
   10 & \[ \frac{D}{x} = 1 + \sqrt{\frac{M_m}{M_e}} \] & Add $1$ to
   both sides \\
   \hline
-  11 & \[ D = x\left( 1 + \sqrt{\frac{M_m}{M_e}}\right) \] & Multiply both sides by
+  \rowcolor[gray]{0.95} 11 & \[ D = x\left( 1 + \sqrt{\frac{M_m}{M_e}}\right) \] & Multiply both sides by
   $x$ \\
   \hline
   12 & \[ \frac{D}{1 + \sqrt{\frac{M_m}{M_e}}} = x \] & Divide both
   sides by $1 + \sqrt{\frac{M_m}{M_e}}$\\
   \hline
-  13 & \[ x = \frac{D}{1 + \sqrt{\frac{M_m}{M_e}}} \] & Flip sides \\
+  \rowcolor[gray]{0.95} 13 & \[ x = \frac{D}{1 + \sqrt{\frac{M_m}{M_e}}} \] & Flip sides \\
   \hline
 \end{longtable}
 
@@ -361,55 +362,55 @@ and they're separated by about $3.844 \times 10^8$ meters.
 \begin{longtable}{| c | p{0.45\textwidth} | p{0.45\textwidth} |}
   \hline
   Step & Formula & Explanation \\
-  \hline \hline
-  1 & \[ \frac{3.844 \times 10^8}{1 + \sqrt{\frac{7.35 \times
+  \hline \endhead
+  \rowcolor[gray]{0.95} 1 & \[ \frac{3.844 \times 10^8}{1 + \sqrt{\frac{7.35 \times
         10^{22}}{5.972 \times 10^{24}}}} \] & Re-write our derived
     equation, this time with our real numbers \\
     \hline
   2 & \[ \sqrt{\frac{7.35 \times 10^{22}}{5.972 \times 10^{24}}} \] & Move
   that awful fraction out so we can wrestle with it by itself \\
   \hline
-  3 & \[ \sqrt{\frac{7.35}{5.972 \times 10^{2}}}\] & Cancel out a common factor
+  \rowcolor[gray]{0.95} 3 & \[ \sqrt{\frac{7.35}{5.972 \times 10^{2}}}\] & Cancel out a common factor
     of $10^{22}$: already it looks a lot nicer! \\
   \hline
   4 & \[ \sqrt{\frac{7.35}{5.972} \times \frac{1}{10^2}} \] & Separate it out
   \\
   \hline
-  5 & \[ \sqrt{\frac{7.35}{5.972}} \times \sqrt{\frac{1}{10^2}} \] & 
+  \rowcolor[gray]{0.95} 5 & \[ \sqrt{\frac{7.35}{5.972}} \times \sqrt{\frac{1}{10^2}} \] & 
   Separate it into two square root terms \\
   \hline
   6 & \[ \sqrt{\frac{7.35}{5.972}} \times \frac{1}{10} \] & Simplify the
   second square root \\
   \hline
-  7 & \[ 0.1 \times \sqrt{\frac{7.35}{5.972}} \] & Reorganize, using
+  \rowcolor[gray]{0.95} 7 & \[ 0.1 \times \sqrt{\frac{7.35}{5.972}} \] & Reorganize, using
   the fact $0.1 = \frac{1}{10}$ and the Commutative Property of
   Multiplication \\
   \hline
   8 & \[ 7.35 \div 5.972 \approx 1.231 \] & long division to the
   rescue \\
   \hline
-  9 & \[ 0.1 \times \sqrt{1.231} \] & rewrite step 7 with step 8 \\
+  \rowcolor[gray]{0.95} 9 & \[ 0.1 \times \sqrt{1.231} \] & rewrite step 7 with step 8 \\
   \hline
   10 & \[ 0.1 \times 1.11 \] & I admit, I used a pocket calculator
   here; 1.11 is an approximate value\\
   \hline
-  11 & \[ 0.1 \times 1.11 = 0.111 \] & complete step 10 \\
+  \rowcolor[gray]{0.95} 11 & \[ 0.1 \times 1.11 = 0.111 \] & complete step 10 \\
   \hline
   12 & \[ \sqrt{\frac{7.35 \times 10^{22}}{5.972 \times 10^{24}}}
   \approx 0.111 \] & Equate step 2 with the outcome of step 11 \\
   \hline
-  13 & \[ \frac{3.844 \times 10^8}{1 + 0.111} \] & Re-write step 1 \\
+  \rowcolor[gray]{0.95} 13 & \[ \frac{3.844 \times 10^8}{1 + 0.111} \] & Re-write step 1 \\
   \hline
   14 & \[ \frac{3.844 \times 10^8}{1.111} \] & Simplify the
   denominator \\
   \hline
-  15 & \[ 10^8 \times \frac{3.844}{1.111} \] & Wow.  Isn't this a
+  \rowcolor[gray]{0.95} 15 & \[ 10^8 \times \frac{3.844}{1.111} \] & Wow.  Isn't this a
   \textit{much} nicer fraction? \\
   \hline
   16 & \[ 10^8 \times 3.46 \] & Long division to the rescue once again
   \\
   \hline
-  17 & \[ 3.46 \times 10^8 \] & The distance to the gravity cancellation
+  \rowcolor[gray]{0.95} 17 & \[ 3.46 \times 10^8 \] & The distance to the gravity cancellation
   point, in meters \\
   \hline
 \end{longtable}
