@@ -1,38 +1,59 @@
-\documentclass[10pt,letterpaper]{report}
+\documentclass[10pt,letterpaper,oneside]{book}
 \usepackage{mathtools}
 \usepackage{libertine}
 \usepackage{eulervm}
 \usepackage{longtable}
 \usepackage{hyperref}
 \usepackage{colortbl}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
 \hypersetup{
     colorlinks = true,
     allcolors = blue
 }
 \usepackage{url}
 \begin{document}
-\title{Newtonian Gravity}
-\author{Robert J.\ Hansen\thanks{\href{mailto:rob@hansen.engineering}{\nolinkurl{rob@hansen.engineering}}}}
+\title{A Little Mathemagic}
+\author{Rob Hansen}
 \maketitle
-\begin{abstract}
-
-  Isaac Newton's law of universal gravitation sounds complicated, but in
-  reality you can do surprising things armed with it and a little high
-  school algebra.  Here we're going to use it to figure out, ``So
-  where between the earth and the moon would their two gravities
-  cancel out?''
-
-  The latest version of this document can be found at
-  \href{https://www.github.com/rjhansen/fun-math}{GitHub}.
-
-  Copyright 2017, Robert J.\ Hansen.  You may share and adapt this
-  work under the terms of the
-  \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative
-    Commons Attribution-ShareAlike 4.0 International license}.
-  
-\end{abstract}
 \tableofcontents
-\part{Student Section}
+\frontmatter
+\chapter{Preface}
+\section*{About the author}
+Rob holds a Master's degree in computer science from the
+University of Iowa and will someday (promise, Dad) finally get around
+to finishing his Ph.D.  He can be reached at
+\href{mailto:rob@hansen.engineering}{\nolinkurl{rob@hansen.engineering}}.
+
+\section*{Why this book?}
+From time to time I give detailed explanations of interesting math
+problems to teenagers.  I'm now compiling all my notes into one
+volume, in the hopes others might find them interesting.
+
+\section*{How to use this book}
+Each chapter covers a single math problem that I think is interesting,
+and covers it from beginning all the way to a solution.  Some chapters
+will use formal proofs, others will rely on casual reasoning.  Each
+chapter stands alone and can be enjoyed independent of the others.  If
+a chapter doesn't interest you, try another.  Each chapter will also
+include a couple of homework questions for the benefit of teachers and
+parents who want to use this in an educational setting.  The Appendix
+contains answers to each question.
+
+\section*{Stay up-to-date}
+The latest version of this document can be found at
+\href{https://www.github.com/rjhansen/fun-math}{GitHub}.
+
+\section*{Legal notices}
+Copyright 2017, Robert J.\ Hansen.  You may share and adapt this
+work under the terms of the
+\href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative
+  Commons Attribution-ShareAlike 4.0 International license}.
+
+Although reasonable care has been taken to ensure accuracy, the
+author is not responsible for any errors.
+
+\mainmatter
 \chapter{Newton's Gravity}
 \section{Introduction}
 Imagine you wanted to send a baseball all the way to the moon.  How
@@ -52,7 +73,7 @@ With a little algebra and Newton's theory of gravity, we can figure it
 out.
 
 \subsection{The good news}
-\textit{Don't be scared by this document's size!}  Yes, it's very
+\textit{Don't be scared by this chapter's size!}  Yes, it's very
 large, but that's only because each and every step is fully
 documented.  Many steps which are glossed over in other treatments are
 presented here fully.  We'll conquer this problem by taking a large
@@ -69,13 +90,7 @@ basic algebra using one variable, square roots, and exponents.  This
 won't teach you any algebra, but it will show you how you can use
 algebra to answer interesting questions about the universe.
 
-\subsection{You have permission}
-This entire thing is a workbook---so work in it!  Underline things, take
-notes, circle stuff.  Real scientists mark up their workbooks.  They
-do it because it helps them understand.  You should feel free to do
-the same.
-
-\section{Newton's Law of Universal Gravitation}
+\section{Universal Gravitation}
 
 In 1687, Isaac Newton published a groundbreaking science book called
 \textit{Philosophi\ae{} Naturalis Principia
@@ -449,14 +464,14 @@ We've found a gravity cancellation point $3.46 \times 10^8$ meters from the
     any general method to solve one?
   \end{enumerate}
 
-  \part{Teachers' and Parents' Section}
+  \backmatter
   \chapter{Answers to Homework Questions}
 
   This section is meant for teachers and parents, and for students
   \textit{after} they've tried to solve the homework problems on their
   own.
   
-  \section{\S 1.2.3}
+  \section*{\S 1.2.3}
 
   \begin{enumerate}
   \item
@@ -474,7 +489,7 @@ We've found a gravity cancellation point $3.46 \times 10^8$ meters from the
     surface.
   \end{enumerate}
 
-  \section{\S 1.3.1}
+  \section*{\S 1.3.1}
 
   \begin{enumerate}
   \item
