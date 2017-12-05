@@ -1,9 +1,8 @@
-\documentclass[10pt,twocolumn,letterpaper,preprint]{article}
+\documentclass[12pt,letterpaper]{article}
 \usepackage{mathtools}
-\usepackage{abstract}
-\usepackage{fontspec}
-\usepackage{marvosym}
-\setmainfont{Crimson Text}[Ligatures=TeX]
+\usepackage{libertine}
+\usepackage{eulervm}
+\usepackage{longtable}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks = true,
@@ -13,222 +12,255 @@
 \begin{document}
 \title{Newtonian Gravity}
 \author{Robert J.\ Hansen\thanks{\href{mailto:rob@hansen.engineering}{\nolinkurl{rob@hansen.engineering}}}}
-\twocolumn[
-    \maketitle
-    \begin{onecolabstract}
-    Isaac Newton's law of universal gravitation sounds complicated, but in
-    reality you can do surprising things armed with it and a little high
-    school algebra.  Here we're going to use it to figure out, ``So where
-    between the earth and the moon would their two gravities cancel out?'',
-    and for an encore using a little calculus, ``and how much energy does it
-    take to get there?''
+\maketitle
+\begin{abstract}
 
-    The latest version of this document can be found at
-    \href{https://rjhansen.github.io/fun-math}{GitHub}.
+  Isaac Newton's law of universal gravitation sounds complicated, but in
+  reality you can do surprising things armed with it and a little high
+  school algebra.  Here we're going to use it to figure out, ``So
+  where between the earth and the moon would their two gravities
+  cancel out?''
 
-    Copyright 2017, Robert J.\ Hansen.  You may share and adapt this work
-    under the terms of the \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-ShareAlike
-    4.0 International license}.
-    \end{onecolabstract}
-]
-\saythanks
+  The latest version of this document can be found at
+  \href{https://www.github.com/rjhansen/fun-math}{GitHub}.
+
+  Copyright 2017, Robert J.\ Hansen.  You may share and adapt this
+  work under the terms of the
+  \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative
+    Commons Attribution-ShareAlike 4.0 International license}.
+  
+\end{abstract}
 \tableofcontents
 \section{Introduction}
-Imagine you wanted to send a baseball all the way to the moon.  How far would
-you have to hit it?
+Imagine you wanted to send a baseball all the way to the moon.  How
+far would you have to hit it?
 
-The moon is about 384,000 kilometers away, but you
-wouldn't need to hit it that far.  Somewhere between the earth and the moon,
-there's a \textit{libration point} where the earth's gravity and the moon's
-gravity cancel out.  If you're even one meter short of this libration point
-you'll fall back to earth --- but if you go one meter beyond, the moon's gravity
-will draw you the rest of the way to the moon.
+The moon is about 384,000 kilometers away, but you wouldn't need to
+hit it that far.  Somewhere between the earth and the moon, there's a
+\textit{cancellation point} where the earth's gravity and the moon's
+gravity cancel out.  If you hit the ball even one meter short of this
+cancellation point it will fall back to earth --- but if you hit one
+meter beyond, the moon's gravity will draw you the rest of the way
+there.
 
-So where is the libration point?  How far would we have to hit a baseball so
-the moon's gravity could take it the rest of the way?  With a little algebra
-and Newton's theory of gravity, we can figure it out.
+So where is the cancellation point?  How far would we have to hit a
+baseball so the moon's gravity could take it the rest of the way?
+With a little algebra and Newton's theory of gravity, we can figure it
+out.
+
+\subsection{The good news}
+\textit{Don't be scared by this document's size!}  Yes, it's very
+large, but that's only because each and every step is fully
+documented.  Many steps which are glossed over in other treatments are
+presented here fully.  We'll conquer this problem by taking a large
+number of very tiny steps in the direction of an answer, and each step
+will be fully explained.
+
+\subsection{Intended audience}
+Anyone interested in mathematics, physics, astronomy, or space
+travel.
 
 \subsection{Required skills}
-In order to make sense of this you'll need to have a good handle on basic
-algebra in one variable, square roots, and exponents.  This won't teach you
-any algebra, but it will show you how you can use algebra to answer
-interesting questions about the universe.
+In order to make sense of this you'll need to have a good handle on
+basic algebra using one variable, square roots, and exponents.  This
+won't teach you any algebra, but it will show you how you can use
+algebra to answer interesting questions about the universe.
+
+\subsection{You have permission}
+This entire thing is a workbook---so work in it!  Underline things, take
+notes, circle stuff.  Real scientists mark up their workbooks.  They
+do it because it helps them understand.  You should feel free to do
+the same.
 
 \section{Newton's Law of Universal Gravitation}
 
-In 1687, Isaac Newton published a groundbreaking science book called the
-\textit{Philosophiae Naturalis Principia Mathematica}.  Like all science books
-of his day, he wrote it in Latin.  Its name means, ``The Mathematical
-Principles of Physics''.\footnote{Back then, physics was called ``natural
-philosophy''.}  Most people just call it the \textit{Principia}.
+In 1687, Isaac Newton published a groundbreaking science book called \\
+\mbox{\textit{Philosophiae Naturalis}} \mbox{\textit{Principia
+    Mathematica}}.  Like all science books of his day, he wrote it in
+Latin.  Its name means, ``The Mathematical Principles of
+Physics''.  (Back then, physics was called ``natural
+  philosophy''.)  Most people just call his book ``the
+  \textit{Principia}''.
 
-In it, Newton put forth the following idea about how gravity works.  Newton
-said the force of gravity between two objects was equal to what you get
-by multiplying a certain constant with the masses of the two objects, and
-dividing that by the square of how far apart they are.\footnote{
-In everyday use, people tend to use ``mass'' and ``weight'' as synonyms.
-Physicists don't.  We use mass to mean \textit{how much there is,} and weight
-to mean \textit{how hard it's being pulled down.}  If you were to travel to
-the moon you'd have the same mass, but would weigh only a sixth what you do
-on earth.
-}
+In it, Newton put forth the following idea about how gravity works.
+``The force of gravity between two objects is equal to what
+you get by multiplying a certain constant with the masses of the two
+objects, and dividing that by the square of how far apart they
+are.''
 
 By long-standing custom, constants (things that don't change in an
-equation) receive capital letters.  Variables (things which are allowed
-to change) receive lower-case letters.  In Newton's idea for how gravity
-works, the masses of the two things remain constant, as does the special value
-they get multiplied by.  What varies is the distance between them.  Or, in
-mathematical-ese:
+equation) receive capital letters.  Variables (things which are
+allowed to change) receive lower-case letters.  For right now
+everything is going to be fixed, so you'll see a lot of capital
+letters.  Rewriting Newton's idea in mathematical-ese, we get:
 
 \[
-F = G\frac{M_1 M_2}{d^2}
+F = G\frac{M_1 M_2}{D^2}
 \]
 
-There are other ways this could be written.  You may sometimes see this as the
-equivalent,
+There are other ways this could be written.  You may sometimes see
+this as the equivalent,
 
 \[
-F = \frac{G M_1 M_2}{d^2}
+F = \frac{G M_1 M_2}{D^2}
 \]
 
-They mean the same thing: ``take the gravitational constant, multiply it by
-the first mass, multiply that by the second mass, and divide everything by the
-square of the distance between them.''  As you can tell, $G$, $M_1$ and $M_2$
-are constants, but the distance between them, $d$, is allowed to vary.
+They mean the same thing: ``take the gravitational constant, multiply
+it by the first mass, multiply that by the second mass, and divide
+everything by the square of the distance between them.''
 
 \subsection{The gravitational constant}
-It took many scientists many years to figure out the value of $G$ in this
-equation.  Today our best estimate is that $G = 6.67408 \times 10^{-11}$.  That
-number is such a mouthful to say that most physicists will just call it $G$
-and let that letter stand in for it all.
+It took many scientists many years to figure out the value of $G$ in
+this equation.  Today our best estimate is that $G = 6.67408 \times
+10^{-11}$.  That number is such a mouthful to say that most physicists
+will just call it $G$ and let that letter stand in for it all.  (This
+is sort of like letting ``the \textit{Principia}'' stand in for the
+actual name of Newton's book, just in math-ese.)
 
 \subsection{An example}
-Imagine you have a 1-kilogram brick and you want to know how much it weighs.
-You'll need to know the mass of the earth, as well as how far from the earth's
-center you are.  The earth's mass is $5.972 \times 10^{24}$ kilograms, and
-standing on the earth you're about $6.371 \times 10^6$ meters from its center.
+Imagine you have a brick and you want to know how much it
+weighs. You'll need to know the mass of the earth and the mass of the
+brick, as well as how far you are from the earth's center.  The
+earth's mass ($M_1$) is $5.972 \times 10^{24}$ kilograms, and standing
+on the earth you're about $6.371 \times 10^6$ meters from its center
+($D$).  The brick's mass ($M_2$) is $1$ kilogram.
 
-\[
-F = \overbrace{6.67408 \times 10^{-11}}^\text{gravitational constant}
-\times \frac{\overbrace{5.972 \times 10^{24}}^\text{mass of earth} \times
-\overbrace{1}^\text{mass of brick}}{\underbrace{(6.371 \times 10^6)^2}_{\text{
-distance from earth's center, squared}}}
-\]
+How will we proceed?
 
-Start by removing the $1$ from the numerator.  Multiplying by 1 doesn't change
-anything, so we can remove it without changing anything, and it makes things
-a little nicer.
+\begin{longtable}{| c | p{.5\textwidth} | p{.4\textwidth} |}
+  \hline
+  Step & Formula & Explanation \\
+  \hline \hline
+  1 & \[ \overbrace{6.67408 \times 10^{-11}}^G \times
+    \frac{\overbrace{5.972 \times 10^{24}}^{M_1}\times
+      \overbrace{1}^{M_2}}{\underbrace{(6.371 \times
+        10^6)^2}_{D^2}} \] & Start by writing out the
+  original equation.  You can use curly brackets to make notes to
+  remind you of what means what, if that helps you. \\
+  \hline
+  2 & \[ \overbrace{6.67408 \times 10^{-11}}^G \times
+  \frac{\overbrace{5.972 \times 10^{24}}^{M_1}}{\underbrace{(6.371
+      \times 10^6)^2}_{D^2}} \] & Any time we multiply by 1, just remove it.
+  Multiplying by 1 never changes anything. \\
+  \hline
+  3 & \[
+    G \times \frac{M_1}{D^2} = \frac{GM_1}{D^2} \]
+  & Any fraction
+  $\frac{B}{C}$ can be thought of as $B \div C$.  So, 
+  $A \times \frac{B}{C}$ is the same as $A \times B \div C$.
+  Thanks to the Associative Property of Multiplication, this is the same as
+  $(A \times B) \div C$, or $\frac{A \times B}{C}$, or $\frac{AB}{C}$.\\
+  \hline
+ 4 & \[ \frac{\overbrace{6.67408 \times 10^{-11}}^{G}\times\overbrace{5.972
+     \times 10^{24}}^{M_{1}}}{\underbrace{(6.371 \times
+     10^6)^2}_{D^2}}\] & Rewrite $\frac{GM_1}{D^2}$ using our actual
+ numbers \\
+ \hline
+  5 & \[ \frac{6.67408 \times 5.972 \times 10^{-11} \times
+    10^{24}}{(6.371 \times 10^6)^2} \] & $ A \times B \times C \times D$
+  can be rearranged into $A \times C \times B \times D$ thanks to the
+  Commutative Property of Multiplication.  So long as we don't remove
+  any numbers from our string of multiplicands, we can rearrange them
+  how we like.  In just a little bit this will make life a lot easier!
+  \\
+  \hline
+  6 & \[ \frac{6.67408 \times 5.972 \times 10^{13}}{(6.371\times10^6)^2}\] &
+  Two exponential numbers with the same base can be
+  easily multiplied together just by adding their exponents.
+  $10^{-11}$ and $10^{24}$ both have the same base ($10$).
+  $-11 + 24 = 24 - 11 = 13$, so $10^{-11} \times 10^{24} = 10^{13}$.
+  Now, isn't that a lot nicer? \\
+  \hline
+  7 & \[ 6.67408 \times 5.972 \approx 39.86 \] & We don't need all the
+  digits here: $39.86$ is plenty accurate for us.  (Scientists have a
+  special procedure for determining how many digits to use, called
+  ``determination of significant digits''.  We won't get into it here:
+  for right now, just assume two digits past the decimal point is
+  pretty
+  good.) \\
+  \hline
+  8 & \[ \frac{39.86 \times 10^{13}}{(6.371 \times
+    10^6)^2} \] & Another two unpleasant numbers are gone, replaced
+  with a single much nicer number \\
+  \hline
+  9 & \[ 39.86 = 3.986 \times 10^1 \] & When using scientific notation,
+  any number larger than ten should be broken up into a number smaller
+  than ten multiplied by a certain power-of-ten.  Any number smaller
+  than one should be changed in a similar way. \\
+  \hline
+  10 & \[ \frac{3.986 \times 10^1 \times 10^{13}}{(6.371 \times
+    10^6)^2} \] & Re-write step 8 with the outcome of step 9 \\
+  \hline
+  11 & \[ \frac{3.986 \times 10^{14}}{(6.371 \times 10^6)^2} \] &
+  The numerator is now complete, and less scary. \\
+  \hline
+  12 & \[ \frac{3.986 \times 10^{14}}{6.371^2 \times {10^6}^2} \] &
+  $(a \times b)^2$ is the same as $a \times b \times a \times b$.
+  Thanks to the Commutative Property of Multiplication, this is the
+  same as $a \times a \times b \times b$, or $a^2 \times b^2$. \\
+  \hline
+  13 & \[ 6.371 \times 6.371 \approx 40.59 \approx 4.059 \times
+  10^1 \] & Multiply out the first squared term and convert it into a
+  proper scientific-notation number \\
+  \hline
+  14 & \[ \frac{3.986 \times 10^{14}}{4.059 \times 10^1 \times
+    {10^6}^2} \] & Re-write step 12 with the outcome of step 13 \\
+  \hline
+  15 & \[{10^6}^2 = 10^{12}\] & When raising a power to a power,
+  multiply together the two powers.  E.g., $100^{1000} = 1000000$,
+  or ${10^2}^3 = 10^6$. \\
+  \hline
+  16 & \[\frac{3.986 \times 10^{14}}{4.059 \times 10^1 \times
+    10^{12}}\] & Re-write step 14 with the outcome of step 15 \\
+  \hline
+  17 & \[ 10^1 \times 10^{12} = 10^{13}\] &
+  Following our rule from before (``to multiply together two
+  exponential numbers in the same base, add their exponents''), we
+  simplify the denominator. \\
+  \hline
+  18 & \[\frac{3.986 \times 10^{14}}{4.059 \times 10^{13}} \] &
+  Re-write step 16 with the outcome of step 17 \\
+  \hline
+  19 & \[\frac{3.986 \times 10^1}{4.059}\] & Both numerator and
+  denominator share a factor of $10^{13}$.  It cancels out, leaving
+  $10^1$ on top and nothing below. \\
+  \hline
+  20 & \[\frac{3.986 \times 10}{4.059}\] & $10^1 = 10$, so simplify
+  step 19 with that \\
+  \hline
+  21 & \[10 \times \frac{3.986}{4.059}\] & Sort of like step 3, but in
+  reverse \\
+  \hline
+  22 & \[3.986 \div 4.059 \approx 0.982\] & Plain-old long division \\
+  \hline
+  23 & \[10 \times 0.982 = 9.82 \] & Re-write step 21 with step 22 \\
+  \hline
+  24 & \[9.82\] & {\Huge{\textbf{Success!}}} (Huge boldface caps?  Oh, yes,
+  you deserve it!) \\
+  \hline   
+\caption{A full workup of using Newton's Law of Universal Gravitation}  
+\end{longtable}
 
-\[
-F = \overbrace{6.67408 \times 10^{-11}}^\text{gravitational constant}
-\times \frac{\overbrace{5.972 \times 10^{24}}^\text{mass of earth}}
-{\underbrace{(6.371 \times 10^6)^2}_{\text{
-distance from earth's center, squared}}}
-\]
+At the end of all this math, you've discovered that at the earth's
+surface the earth and a 1-kilogram brick pull on each other with a
+force of $9.82$ somethings.
 
-Now we're going to move the gravitational constant into the numerator:
+Remember: kilograms measure mass (how much of something there is),
+\textit{not weight.}  Weight is a measure of how hard something is
+being pulled down.  If you were to stand on the moon your mass would
+remain the same (none of you would be missing), but your weight would
+be significantly less (you'd feel lighter).
 
-\[
-F = \frac{\overbrace{6.67408 \times 10^{-11}}^\text{gravitational constant}
-\times \overbrace{5.972 \times 10^{24}}^\text{mass of earth}}
-{\underbrace{(6.371 \times 10^6)^2}_{\text{
-distance from earth's center, squared}}}
-\]
+So if the kilogram isn't a unit of weight, what is?
 
-Since multiplication is commutative, we can re-order multiplicands however
-we like.  We do that next to get the powers next to each other.  (Since we're
-breaking up the multiplicands, we're also going to stop with the helpful
-brackets --- but don't worry, it's all for the best.)
+Scientists use the kilogram as the unit of mass, and the
+\textit{newton} as the unit of weight.  (You'll also see the newton
+called the unit of force.  It's the same thing, really: weight is just
+``the force with which gravity is pulling you down''.)
 
-\[
-F = \frac{6.67408 \times 5.972 \times 10^{-11} \times 10^{24}}{(6.371 \times
-10^6)^2}
-\]
-
-To multiply together two exponential numbers with the same base, just add
-their exponents.  $-11 + 24$ is the same as $24 - 11$, or $13$.
-
-\[
-F = \frac{6.67408 \times 5.972 \times 10^{13}}{(6.371 \times 10^6)^2}
-\]
-
-$6.67408$ is about $7$, and $5.9$ is about $6$, so we should expect to see
-a numerator of about $42 \times 10^{13}$.  Actually doing the math gives about
-$39.86$, so our estimate was good.
-
-\[
-F = \frac{39.86 \times 10^{13}}{(6.371 \times 10^6)^2}
-\]
-
-When using scientific notation, if the leading term is $10$ or greater, divide
-it by $10$ and add one to the exponent.  Keep doing this until the leading term
-is smaller than $10$.  \mbox{$39.86 \geq 10$,} so we divide it by $10$ and add one to
-the exponent.
-
-\[
-F = \frac{3.986 \times 10^{14}}{(6.371 \times 10^6)^2}
-\]
-
-With the numerator conquered, let's look at the denominator.  When we have
-something like $(ab)^2$, we know that's really $a^2b^2$.  So with this,
-
-\[
-F = \frac{3.986 \times 10^{14}}{(\underbrace{6.371}_{a} \times
-\underbrace{10^6}_{b})^2}
-\]
-
-becomes
-
-\[
-F = \frac{3.986 \times 10^{14}}{6.371^2 \times {10^6}^2}
-\]
-
-When raising a power to a power, the powers aren't added, they're multiplied.
-So the denominator will be about $36 \times 10^{12}$, or about $3.6 \times
-10^{13}$.  Actually multiplying $6.371 \times 6.371$ gives about $40.59$, so
-our estimate was again good.
-
-\[
-F = \frac{3.986 \times 10^{14}}{4.059 \times 10^{13}}
-\]
-
-As it turns out, we can divide both the top and bottom by a common factor of
-$10^{13}$.  This gives us,
-
-\[
-F = \frac{3.986 \times 10^1}{4.059}
-\]
-
-$10^1 = 10$.  That's a nice convenient number to move out, so let's do that:
-
-\[
-F = 10 \times \frac{3.986}{4.059}
-\]
-
-We've now reduced this fraction down so far we can just do some long division.
-$3.986 \div 4.059 = 0.982$.  Multiplying that by ten gives
-
-\[
-F = 9.82
-\]
-
-We can now say, ``under Newton's theory of gravity, a one-kilogram block at
-the earth's surface should be pulled down with a force of 9.82...''
-
-\subsection{The unit of force}
-
-Nine point eight two what?  Pounds?  No, not pounds --- pounds aren't part of
-the metric system.  Kilograms?  No --- kilograms measure mass, not force.
-
-The unit of force is named the \textit{newton}, after Isaac Newton.  Where
-the pound is abbreviated ``lb.''\ and the kilogram is abbreviated ``kg'', the
-newton is abbreviated with a capital letter N.
-
-At long last we're finished:
-
-\[
-F = 9.82 N
-\]
+So, at the earth's surface, you've shown a 1-kilogram block weighs
+$9.82N$.  The capital N is used as the abbreviation for newton, much
+in the same way ``lb.'' is used for pound, or ``kg'' is used for kilogram.
 
 \subsection{Homework questions}
 \begin{enumerate}
@@ -237,155 +269,261 @@ If you wanted to find out how hard gravity would pull down a 1-kg brick on
 the moon, what would you need to know about the moon before you could start
 solving the problem?
 \item
-So how hard should a 1-kilogram brick be pulled down on the surface of the moon?
+So how hard should a 1-kilogram brick be pulled down on the surface of
+the moon?  (You can use Google to find the numbers you need.)
 \item
 Repeat it for Mars.  Which of the three (the earth, the moon, and Mars) has the
-strongest gravity at their surface?
+strongest gravity at their surface?  The moon's gravity is about what
+fraction of the earth's?  The gravity of Mars is about what fraction of
+the earth's?
 \end{enumerate}
 
-\section{Finding a libration point}
+\section{Finding where gravity cancels out}
 
-To find a libration point we need to find where the force of earth's gravity is
-exactly countered by the force of the moon's gravity.  Once more, let's break
-out our trusty 1-kilogram brick (a useful companion in almost any physics
-experiment) and figure out where the forces on it are equal.
+To find where gravity cancels out we need to find where the force of
+earth's gravity is exactly countered by the force of the moon's
+gravity.  Once more, let's break out our trusty 1-kilogram brick (a
+useful companion in almost any physics experiment!) and figure out where the forces on it are equal.
 
 To help keep things straight (``is that the force from the earth, or from the
-moon?'') we'll use two special symbols: $e$ will denote the earth, and
-$m$ will denote the moon.  $F_{e}$ would be, for instance, ``the force
-exerted by the earth'', and $M_{m}$ would be, ``the mass of the moon''.
+moon?'') we'll use two special symbols: $e$ will denote the earth, $o$
+will denote whatever object we're looking to balance between the earth
+and the moon, and $m$ will denote the moon.  $M_{e}$ would be, for
+instance, ``the mass of the earth'', and $M_{o}$ would be,
+``the mass of the object between the earth and the moon''.
 
-We'll let $D$ be the total distance between the center of the earth and the center of
-the moon.  If the brick is $x$ meters from earth, it will be $D-x$ meters from
-the moon.
+We'll let $D$ be the total distance between the center of the earth
+and the center of the moon.  If the brick is $x$ meters from earth, it
+will be $D-x$ meters from the moon.
 
 First, we write out the formula for the force on the brick from the earth and
 the moon:
 
-\begin{align*}
-F_{e} &= G\frac{M_{e} \times 1kg}{x^2}\\
-F_{m} &= G\frac{M_{m} \times 1kg}{(D-x)^2}
-\end{align*}
+\begin{longtable}{| c | p{0.5\textwidth} | p{0.4\textwidth} |}
+  \hline
+  Step & Formula & Explanation \\
+  \hline
+  1 & \[ G\frac{M_e M_o}{x^2} = G\frac{M_m M_o}{(D - x)^2} \] & The
+    force of Earth's gravity on the object $x$ meters away from the
+    Earth's center equals the force of the moon's gravity on the
+    object $D - x$ meters away from the moon's center\\
+    \hline
+  2 & \[ GM_o \frac{M_e}{x^2} = GM_o\frac{M_m}{(D - x)^2} \] & Use the
+  Associative Property of Multiplication to move our $M_o$ term out
+  front with the $G$ term \\
+  \hline
+  3 & \[ \frac{M_e}{x^2} = \frac{M_m}{(D - x)^2} \] & Divide both
+  sides of the equation by $GM_o$ \\
+  \hline
+  4 & \[ \frac{\sqrt{M_e}}{x} = \frac{\sqrt{M_m}}{D - x} \] & Run a
+  square root over both sides \\
+  \hline
+  5 & \[ \frac{(D-x)\sqrt{M_e}}{x} = \sqrt{M_m} \] & Multiply
+  everything through by $D - x$ \\
+  \hline
+  6 & \[ \frac{D-x}{x} = \frac{\sqrt{M_m}}{\sqrt{M_e}} \] & Divide
+  everything through by $\sqrt{M_e}$ \\
+  \hline
+  7 & \[ \frac{D - x}{x} = \sqrt{\frac{M_m}{M_e}} \] & Normalize the
+  fraction on the right \\
+  \hline
+  8 & \[ \frac{D}{x} - \frac{x}{x} = \sqrt{\frac{M_m}{M_e}} \] &
+  Separate the left-hand side into two fractions \\
+  \hline
+  9 & \[ \frac{D}{x} - 1 = \sqrt{\frac{M_m}{M_e}} \] & $\frac{x}{x} =
+  1$ \\
+  \hline
+  10 & \[ \frac{D}{x} = 1 + \sqrt{\frac{M_m}{M_e}} \] & Add $1$ to
+  both sides \\
+  \hline
+  11 & \[ D = x\left( 1 + \sqrt{\frac{M_m}{M_e}}\right) \] & Multiply both sides by
+  $x$ \\
+  \hline
+  12 & \[ \frac{D}{1 + \sqrt{\frac{M_m}{M_e}}} = x \] & Divide both
+  sides by $1 + \sqrt{\frac{M_m}{M_e}}$\\
+  \hline
+  13 & \[ x = \frac{D}{1 + \sqrt{\frac{M_m}{M_e}}} \] & Flip sides \\
+  \hline
+\caption{Using the Law of Universal Gravitation to derive a cancellation
+  point}
+\end{longtable}
 
-Just like before we're going to erase our multiply-by-one term.  Multiplying by
-one changes nothing, so we can get rid of it.
+We've now determined that for \textit{any} two bodies of mass, we
+can find a cancellation point between them by dividing the distance
+between them by one plus the square root of their mass ratio!
 
-\begin{align*}
-F_{e} &= G\frac{M_{e}}{x^2}\\
-F_{m} &= G\frac{M_{m}}{(D-x)^2}
-\end{align*}
+$M_m$ is about $7.35 \times 10^{22}$ kilograms;
+$M_e$ is about $5.972 \times 10^{24}$ kilograms;
+and they're separated by about $3.844 \times 10^8$ meters.
 
-Now, we want to know where $F_e = F_m$.  Since we have a neat equation for each,
-let's set those equations as equal.
+\newpage
 
-\[
-G\frac{M_e}{x^2} = G\frac{M_m}{(D-x)^2}
-\]
+\begin{longtable}{| c | p{0.5\textwidth} | p{0.4\textwidth} |}
+  \hline
+  Step & Formula & Explanation \\
+  \hline
+  1 & \[ \frac{3.844 \times 10^8}{1 + \sqrt{\frac{7.35 \times
+        10^{22}}{5.972 \times 10^{24}}}} \] & Re-write our derived
+    equation, this time with our real numbers \\
+    \hline
+  2 & \[ \sqrt{\frac{7.35 \times 10^{22}}{5.972 \times 10^{24}}} \] & Move
+  that awful fraction out so we can wrestle with it by itself \\
+  \hline
+  3 & \[ \sqrt{\frac{7.35}{5.972 \times 10^{2}}}\] & Cancel out a common factor
+    of $10^{22}$: already it looks a lot nicer! \\
+  \hline
+  4 & \[ \sqrt{\frac{7.35}{5.972} \times \frac{1}{10^2}} \] & Separate it out
+  \\
+  \hline
+  5 & \[ \sqrt{\frac{7.35}{5.972}} \times \sqrt{\frac{1}{10^2}} \] & 
+  Separate it into two square root terms \\
+  \hline
+  6 & \[ \sqrt{\frac{7.35}{5.972}} \times \frac{1}{10} \] & Simplify the
+  second square root \\
+  \hline
+  7 & \[ 0.1 \times \sqrt{\frac{7.35}{5.972}} \] & Reorganize, using
+  the fact $0.1 = \frac{1}{10}$ and the Commutative Property of
+  Multiplication \\
+  \hline
+  8 & \[ 7.35 \div 5.972 \approx 1.231 \] & long division to the
+  rescue \\
+  \hline
+  9 & \[ 0.1 \times \sqrt{1.231} \] & rewrite step 7 with step 8 \\
+  \hline
+  10 & \[ 0.1 \times 1.11 \] & I admit, I used a pocket calculator
+  here; 1.11 is an approximate value\\
+  \hline
+  11 & \[ 0.1 \times 1.11 = 0.111 \] & complete step 10 \\
+  \hline
+  12 & \[ \sqrt{\frac{7.35 \times 10^{22}}{5.972 \times 10^{24}}}
+  \approx 0.111 \] & Equate step 2 with the outcome of step 11 \\
+  \hline
+  13 & \[ \frac{3.844 \times 10^8}{1 + 0.111} \] & Re-write step 1 \\
+  \hline
+  14 & \[ \frac{3.844 \times 10^8}{1.111} \] & Simplify the
+  denominator \\
+  \hline
+  15 & \[ 10^8 \times \frac{3.844}{1.111} \] & Wow.  Isn't this a
+  \textit{much} nicer fraction? \\
+  \hline
+  16 & \[ 10^8 \times 3.46 \] & Long division to the rescue once again
+  \\
+  \hline
+  17 & \[ 3.46 \times 10^8 \] & The distance to the gravity cancellation
+  point, in meters \\
+  \hline
+  \caption{Computing a gravity cancellation point}  
+\end{longtable}
 
-Divide both sides by $G$, leaving:
+We've found a gravity cancellation point $3.46 \times 10^8$ meters from the
+  earth, or about ninety percent of the way to the moon.  If we can
+  just get there, the moon's gravity will take over and draw us the
+  rest of the way in.
 
-\[
-\frac{M_e}{x^2} = \frac{M_m}{(D-x)^2}
-\]
+  \subsection{Homework problems}
+  \begin{enumerate}
+  \item
+    How far is $3.46 \times 10^8$ meters, in kilometers?
+  \item
+    How far is $3.46 \times 10^8$ meters, in miles?  (Hint: there are
+    about $1.61$ kilometers per mile.)
+  \item
+    There are five lunar libration points.  These are also called
+    ``Lagrange points'', after the astronomer who discovered them,
+    Joseph-Louis Lagrange.  They're named L1, L2, L3, L4, and L5.  If
+    something is positioned exactly on a Lagrange point, it will be
+    effectively immobile relative to the earth and moon.  This is very
+    much like a gravity cancellation point, but it's not quite identical.
 
-Take the square root of both sides:
+    Look up where the L1 point is.  You'll discover that our gravity
+    cancellation point is almost, \textbf{but not quite}, the same as
+    L1.
+    There must be something
+    else going on with the earth and the moon that's affecting our
+    numbers and throwing them off.  What could it be?
+  \item
+    How is a Lagrange point different from a gravity cancellation
+    point?
+  \item
+    Computing a Lagrange point accurately requires solving a
+    \textit{quintic equation}.  What's a quintic equation?  Is there
+    any general method to solve one?
+  \end{enumerate}
 
-\[
-\frac{\sqrt{M_e}}{x} = \frac{\sqrt{M_m}}{(D-x)}
-\]
+  \newpage
+  \section{Answers to Homework Questions}
 
-Multiply both sides by $(D-x)$:
+  This section is meant for teachers and parents, and for students
+  \textit{after} they've tried to solve the homework problems on their
+  own.  It's printed on a new page so that it can easily be separated
+  from the rest of the workbook.
+  
+  \subsection{Section Two}
 
-\[
-\frac{(D-x)\sqrt{M_e}}{x} = \sqrt{M_m}
-\]
+  \begin{enumerate}
+  \item
+    The moon's mass in kilograms ($7.35 \times 10^{22}$), and the
+    moon's radius in meters ($1.737 \times 10^6$).
+  \item
+    Repeating the same process we used to compute the earth's gravity,
+    we discover a $1$-kilogram brick on the moon would be pulled down
+    with a force of $1.63N$.  This is almost exactly one-sixth the
+    force felt on the earth.
+  \item
+    Mars's mass is $6.42 \times 10^{23}$ kilograms; its radius, $3.39
+    \times 10^6$ meters.  This means a $1$-kilogram brick on its
+    surface weighs $3.73N$, or about two-fifths what it weighs on earth's
+    surface.
+  \end{enumerate}
 
-Divide both sides by $\sqrt{M_e}$:
+  \subsection{Section Three}
 
-\[
-\frac{D-x}{x} = \frac{\sqrt{M_m}}{\sqrt{M_e}}
-\]
+  \begin{enumerate}
+  \item
+    To convert from meters to kilometers, divide by $1000$.  You can
+    do this easily by seeing that $1000 = 10^3$.  Then just use the
+    subtract-the-exponents trick to do the division: $3.46 \times 10^8
+    \div 10^3 = 3.46 \times 10^5$ kilometers, or 346,000 kilometers.
+  \item
+    $3.46 \times 10^5 \div 1.61 = 10^5 \times \frac{3.46}{1.61}$.
+    That fraction is about $2.15$, so the cancellation point is about
+    215,000 miles away.
+  \item
+    Lagrange points aren't the same as gravity cancellation points,
+    but they're similar.  Lagrange points are misnamed: they're
+    actually Lagrange \textit{orbits}.  Something at one of the
+    earth's Lagrange points is still traveling in a
+    circle (an ellipse, really) around the earth; it's just that at
+    each step along its orbit it preserves the exact same distances
+    between itself, the earth, and the moon.
 
-Regularize the right-hand side:
+    In our derivation we assumed the earth and the moon were fixed in
+    space.  In reality, though, the moon is in constant motion around
+    the earth.  The Lagrange points represent cancellation in a moving
+    system.  We computed cancellation points in an unmoving
+    \mbox{system ---} what physicists would call a \textit{static}
+    system.
 
-\[
-\frac{D-x}{x} = \sqrt{\frac{M_m}{M_e}}
-\]
+    \textbf{This doesn't mean we're wrong!}  Quite the opposite.  We
+    correctly computed the gravity cancellation point.  If you can hit
+    a baseball (or launch a rocket) to that point, the moon's gravity
+    \textbf{will} take it the rest of the way.
 
-Separate out the left side into:
+    All it means is that we're computing a straight-line journey
+    between the earth and the moon.  A Lagrange point is a stable
+    orbit around the earth, which is to say it's a circle around the
+    earth without a beginning or ending.
 
-\[
-\frac{D}{x} - 1 = \sqrt{\frac{M_m}{M_e}}
-\]
-
-Add 1 to both sides:
-
-\[
-\frac{D}{x} = 1 + \sqrt{\frac{M_m}{M_e}}
-\]
-
-Divide by D:
-
-\[
-\frac{1}{x} = \frac{1 + \sqrt{\frac{M_m}{M_e}}}{D}
-\]
-
-Reciprocalize:
-
-\[
-x = \frac{D}{1 + \sqrt{\frac{M_m}{M_e}}}
-\]
-
-Knowing that $D = 3.84402 \times 10^{9}$ meters, $M_e$ is about
-$5.972 \times 10^{24}$ kilograms, and $M_m$ is about $7.348 \times
-10^{22}$ kilograms, let's try again:
-
-\[
-x = \frac{3.84402 \times 10^9}{1 + \sqrt{\frac{7.348 \times
-10^{22}}{5.972 \times 10^{24}}}}
-\]
-
-That square root term is still mighty unpleasant, so let's reduce it.
-We start by canceling out a factor of $10^{22}$:
-
-\[
-x = \frac{3.84402 \times 10^9}{1 + \sqrt{\frac{7.348}{5.972 \times 10^{2}}}}
-\]
-
-And $10^2$ is just one hundred, so let's multiply it out:
-
-\[
-x = \frac{3.84402 \times 10^9}{1 + \sqrt{\frac{7.348}{597.2}}}
-\]
-
-That fraction is now small enough to punch it into a calculator.  It's just
-over one hundredth: specifically, $1.2304 \times 10^{-2}$.  The square root
-of that is just over a tenth: $0.111$.  This means we have:
-
-\begin{align*}
-x &= \frac{3.84402 \times 10^9}{1 + 0.111}\\
-x &= \frac{3.84402 \times 10^9}{1.111}
-\end{align*}
-
-Still unpleasant.  But by moving the $10^9$ out front, we get:
-
-\[
-x = 10^9 \times \frac{3.84402}{1.111}
-\]
-
-$3.84402 \div 1.111 = 3.45996$.  Moving the decimal place right nine places
-will give us the libration point's distance from earth in meters; moving it
-left three places after that will convert to kilometers.
-
-Or we could just save ourselves a step, realize that $9 - 3 = 6$, shift the
-decimal place right six places, and get our answer immediately.
-
-\[
-x = 345996 \text{km}
-\]
-
-The earth and moon are separated by $384402$ kilometers, but once you travel
-$345996$ kilometers --- or about nine-tenths of the way --- the moon's gravity
-has you, and you're falling to the moon from that point on!
-
+    Lagrange points are closely related to cancellation points, but
+    they're also quite distinctly different.
+  \item
+    See previous answer.
+  \item
+    A quintic equation is one where there's a fifth-power variable.
+    Even simple quintic equations, such as $x^5 - x + 1 = 0$, can be
+    murderously hard to solve with algebra.  One of the major
+    motivating forces behind the invention of calculus was the need
+    for a more powerful kind of math that could address problems like
+    these.
+  \end{enumerate}
 \end{document}
